@@ -1,0 +1,1 @@
+# parcel-plugin-css-stringify

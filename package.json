@@ -1,0 +1,25 @@
+{
+  "name": "parcel-plugin-css-stringify",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "peerDependencies": {
+    "parcel-bundler": "^1.0.0",
+    "autoprefixer": "^9.0.0",
+    "cssnano": "^4.0.0"
+  },
+  "keywords": [
+    "parcel",
+    "parcel-bundler",
+    "parcel-plugin",
+    "stringify",
+    "css",
+    "to-string"
+  ],
+  "author": "shoonia <zaytsev126@gmail.com>",
+  "license": "MIT"
+}
