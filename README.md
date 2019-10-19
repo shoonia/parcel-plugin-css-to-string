@@ -6,11 +6,15 @@ Import CSS file to javascript as a string.
 # peer dependencies
 yarn add -D autoprefixer cssnano parcel-bundler
 # plugin
-yarn add -D https://github.com/shoonia/parcel-plugin-css-to-string.git
+yarn add -D parcel-plugin-css-to-string
+
+# or
+npm i --save-dev autoprefixer cssnano parcel-bundler
+npm i --save-dev parcel-plugin-css-to-string
 ```
 
 # How to use
-You can add list of your custom extension to escape conflicts with global CSS or css-modules.
+You can add the list of your custom extensions to escape conflicts with files for global CSS or css-modules.
 The default asset type `css`.
 
 **.parcelrc**
