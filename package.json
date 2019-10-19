@@ -1,16 +1,16 @@
 {
-  "name": "parcel-plugin-css-stringify",
-  "version": "0.1.0",
-  "description": "",
+  "name": "parcel-plugin-css-to-string",
+  "version": "0.2.0",
+  "description": "Import CSS file to javascript as a string.",
   "main": "./src/index.js",
   "scripts": {},
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
   },
   "peerDependencies": {
-    "parcel-bundler": "^1.0.0",
-    "autoprefixer": "^9.0.0",
-    "cssnano": "^4.0.0"
+    "autoprefixer": "9.*.*",
+    "cssnano": "4.*.*",
+    "parcel-bundler": "1.*.*"
   },
   "keywords": [
     "parcel",
@@ -20,6 +20,14 @@
     "css",
     "to-string"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shoonia/parcel-plugin-css-to-string.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shoonia/parcel-plugin-css-to-string/issues"
+  },
+  "homepage": "https://github.com/shoonia/parcel-plugin-css-to-string#readme",
   "author": "shoonia <zaytsev126@gmail.com>",
   "license": "MIT"
 }
