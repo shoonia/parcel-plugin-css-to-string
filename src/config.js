@@ -1,6 +1,7 @@
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
+const postcssrc = require('postcss-load-config');
 
 const parcelrc = path.join(process.cwd(), '.parcelrc');
 const PLUGIN_NAME = 'parcel-plugin-css-to-string';
@@ -30,10 +31,24 @@ const config = (() => {
   return {};
 })();
 
-const { assetType, autoprefixer, minify } = config;
+function getPostcssrc() {
+  const isAfx = util.isBoolean(config.autoprefixer) ? config.autoprefixer : true;
+  const isCnn = util.isBoolean(config.minify) ? config.minify : true;
+
+  return postcssrc()
+    .catch(() => {
+      return {
+        options: {},
+        plugins: [
+          isAfx && require('autoprefixer'),
+          isCnn && require('cssnano'),
+        ]
+          .filter(Boolean),
+      };
+    });
+}
 
 module.exports = {
-  assetType: Array.isArray(assetType) ? assetType : ['css'],
-  autoprefixer: util.isBoolean(autoprefixer) ? autoprefixer : true,
-  minify: util.isBoolean(minify) ? minify : true,
+  assetType: Array.isArray(config.assetType) ? config.assetType : ['css'],
+  getPostcssrc,
 };

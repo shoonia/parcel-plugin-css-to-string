@@ -19,12 +19,12 @@ console.log(styles); // ".text{color:#162D3D}"
 ## Install
 ```bash
 # peer dependencies
-yarn add -D parcel-bundler autoprefixer cssnano
+yarn add -D parcel-bundler autoprefixer
 # plugin
 yarn add -D parcel-plugin-css-to-string
 
 # or
-npm i --save-dev parcel-bundler autoprefixer cssnano
+npm i --save-dev parcel-bundler autoprefixer
 npm i --save-dev parcel-plugin-css-to-string
 ```
 
@@ -81,8 +81,8 @@ class MyWebComponent extends HTMLElement {
 window.customElements.define("my-web-component", MyWebComponent);
 ```
 
-## Options
-**.parcelrc**
+## Plugin options
+### .parcelrc
 ```json
 {
   "parcel-plugin-css-to-string": {
@@ -96,7 +96,12 @@ window.customElements.define("my-web-component", MyWebComponent);
 |:----------------:|:-----------:|:----------:|:-----------:|
 | **assetType**    | `{Array}`   |  `["css"]` | List of asset types imported to javascript as a string.
 | **autoprefixer** | `{Boolean}` |  `true`    | on/off Autoprefixer
-|  **minify**      | `{Boolean}` |  `true`    | on/off minification (cssnano)
+|  **minify**      | `{Boolean}` |  `true`    | on/off minification
+
+### .postcssrc
+You can configure CSS transforming with PostCSS creating a configuration file using one of these names: `.postcssrc` (JSON), `.postcssrc.js`, or `postcss.config.js`. [more](https://parceljs.org/css.html#postcss)
+
+> `.postcssrc` config omit `.parcelrc` options `autoprefixer` and `minify`
 
 ## Developer tools
 You can configure how the IDE will parse the files with custom extension.

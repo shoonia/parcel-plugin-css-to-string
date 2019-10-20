@@ -3,12 +3,12 @@
   "version": "1.1.0",
   "description": "Importing CSS files as a string to javascript",
   "main": "./src/index.js",
-  "scripts": {},
-  "devDependencies": {},
+  "dependencies": {
+    "postcss-load-config": "~2.x"
+  },
   "peerDependencies": {
-    "autoprefixer": "^9.0.0",
-    "cssnano": "^4.0.0",
-    "parcel-bundler": "^1.0.0"
+    "autoprefixer": "~9.x",
+    "parcel-bundler": "~1.x"
   },
   "keywords": [
     "parcel",
