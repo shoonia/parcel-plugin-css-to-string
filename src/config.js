@@ -1,14 +1,17 @@
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
+const postcssrc = require('postcss-load-config');
 
-const parcelrc = path.join(process.cwd(), '.parcelrc');
-const PLUGIN_NAME = 'parcel-plugin-css-to-string';
+const root = process.cwd();
 
-const config = (() => {
-  if (fs.existsSync(parcelrc)) {
+const parcelConfig = (() => {
+  const config = path.join(root, '.parcelrc');
+  const PLUGIN_NAME = 'parcel-plugin-css-to-string';
+
+  if (fs.existsSync(config)) {
     try {
-      const str = fs.readFileSync(parcelrc, 'utf8');
+      const str = fs.readFileSync(config, 'utf8');
       const json = JSON.parse(str);
 
       if (
@@ -30,10 +33,35 @@ const config = (() => {
   return {};
 })();
 
-const { assetType, autoprefixer, minify } = config;
+const cssnanoConfig = (() => {
+  const config = path.join(root, 'cssnano.config.js');
+
+  if (fs.existsSync(config)) {
+    return require(config);
+  }
+
+  return null;
+})();
+
+function getPostcssrc() {
+  const isCnn = util.isBoolean(parcelConfig.minify) ? parcelConfig.minify : true;
+
+  return postcssrc()
+    .catch(() => {
+      return {
+        options: {},
+        plugins: isCnn
+          ? [
+            (cssnanoConfig == null)
+              ? require('cssnano')
+              : require('cssnano')(cssnanoConfig),
+          ]
+          : [],
+      };
+    });
+}
 
 module.exports = {
-  assetType: Array.isArray(assetType) ? assetType : ['css'],
-  autoprefixer: util.isBoolean(autoprefixer) ? autoprefixer : true,
-  minify: util.isBoolean(minify) ? minify : true,
+  assetType: Array.isArray(parcelConfig.assetType) ? parcelConfig.assetType : ['css'],
+  getPostcssrc,
 };

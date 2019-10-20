@@ -1,13 +1,6 @@
 const Asset = require('parcel-bundler/src/Asset');
-const { minify, autoprefixer } = require('./config.js');
-
-const postcss = require('postcss')(
-  [
-    autoprefixer && require('autoprefixer'),
-    minify && require('cssnano'),
-  ]
-    .filter(Boolean),
-);
+const postcss = require('postcss');
+const { getPostcssrc } = require('./config.js');
 
 function wrap(css) {
   return `module.exports = ${JSON.stringify(css)}`;
@@ -28,7 +21,8 @@ class Stringify extends Asset {
       return;
     }
 
-    const { css } = await postcss.process(string);
+    const { plugins, options } = await getPostcssrc();
+    const { css } = await postcss(plugins).process(string, options);
 
     this.code = wrap(css);
   }

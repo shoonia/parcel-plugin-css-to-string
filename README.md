@@ -1,8 +1,6 @@
 # parcel-plugin-css-to-string
 Importing CSS files as a string to javascript.
 
-The plugin uses [Autoprefixer](https://github.com/postcss/autoprefixer) and [cssnano](https://github.com/cssnano/cssnano) in production build.
-
 **styles.css**
 ```css
 .text {
@@ -18,14 +16,9 @@ console.log(styles); // ".text{color:#162D3D}"
 
 ## Install
 ```bash
-# peer dependencies
-yarn add -D parcel-bundler autoprefixer cssnano
-# plugin
-yarn add -D parcel-plugin-css-to-string
-
-# or
-npm i --save-dev parcel-bundler autoprefixer cssnano
 npm i --save-dev parcel-plugin-css-to-string
+# or
+yarn add -D parcel-plugin-css-to-string
 ```
 
 ## How to use
@@ -81,13 +74,12 @@ class MyWebComponent extends HTMLElement {
 window.customElements.define("my-web-component", MyWebComponent);
 ```
 
-## Options
-**.parcelrc**
+## Plugin options
+### .parcelrc
 ```json
 {
   "parcel-plugin-css-to-string": {
     "assetType": ["css"],
-    "autoprefixer": true,
     "minify": true
   }
 }
@@ -95,8 +87,40 @@ window.customElements.define("my-web-component", MyWebComponent);
 |    Name          |   Type      | Default    | Description |
 |:----------------:|:-----------:|:----------:|:-----------:|
 | **assetType**    | `{Array}`   |  `["css"]` | List of asset types imported to javascript as a string.
-| **autoprefixer** | `{Boolean}` |  `true`    | on/off Autoprefixer
-|  **minify**      | `{Boolean}` |  `true`    | on/off minification (cssnano)
+|  **minify**      | `{Boolean}` |  `true`    | on/off minification
+
+### Minify config
+You can configure minify CSS in production build, where custom configuration can be set by creating `cssnano.config.js` file
+
+**cssnano.config.js**
+```js
+module.exports = {
+  preset: [
+    'default',
+    {
+      calc: false,
+      discardComments: {
+        removeAll: true
+      }
+    }
+  ]
+}
+```
+
+### PostCSS
+You can configure CSS transforming with PostCSS creating a configuration file using one of these names: `.postcssrc` (JSON), `.postcssrc.js`, or `postcss.config.js`.
+
+> `.postcssrc` config omit `.parcelrc` option `minify`. If you use PostCSS config then you need added `cssnano` plugin to minify production build.
+
+**.postcssrc**
+```js
+{
+  "plugins": {
+    "autoprefixer": {},
+    "cssnano": {}
+  }
+}
+```
 
 ## Developer tools
 You can configure how the IDE will parse the files with custom extension.
@@ -117,10 +141,12 @@ my-app
 {
   "files.associations": {
     "*.cssw": "css",
-    ".parcelrc": "json"
+    ".parcelrc": "json",
+    ".postcssrc": "json"
   }
 }
 ```
+- [VS Code: Language Identifiers](https://code.visualstudio.com/docs/languages/identifiers)
 
 ## License
 [MIT](./LICENSE)
