@@ -37,9 +37,7 @@ For example: `styles.cssw`
 ```json
 {
   "parcel-plugin-css-to-string": {
-    "assetType": [
-      "cssw"
-    ]
+    "assetType": ["cssw"]
   }
 }
 ```
@@ -82,6 +80,23 @@ class MyWebComponent extends HTMLElement {
 
 window.customElements.define("my-web-component", MyWebComponent);
 ```
+
+## Options
+**.parcelrc**
+```json
+{
+  "parcel-plugin-css-to-string": {
+    "assetType": ["css"],
+    "autoprefixer": true,
+    "minify": true
+  }
+}
+```
+|    Name          |   Type      | Default    | Description |
+|:----------------:|:-----------:|:----------:|:-----------:|
+| **assetType**    | `{Array}`   |  `["css"]` | List of asset types imported to javascript as a string.
+| **autoprefixer** | `{Boolean}` |  `true`    | on/off Autoprefixer
+|  **minify**      | `{Boolean}` |  `true`    | on/off minification (cssnano)
 
 ## Developer tools
 You can configure how the IDE will parse the files with custom extension.

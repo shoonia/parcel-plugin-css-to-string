@@ -1,6 +1,6 @@
 {
   "name": "parcel-plugin-css-to-string",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Importing CSS files as a string to javascript",
   "main": "./src/index.js",
   "scripts": {},
@@ -20,6 +20,7 @@
   ],
   "files": [
     "LICENSE",
+    "src/config.js",
     "src/index.js",
     "src/Stringify.js",
     "package.json",
