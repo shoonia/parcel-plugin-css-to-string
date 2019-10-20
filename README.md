@@ -1,21 +1,37 @@
 # parcel-plugin-css-to-string
-Import CSS file to javascript as a string.
+Importing CSS files as a string to javascript.
+
+The plugin uses [Autoprefixer](https://github.com/postcss/autoprefixer) and [cssnano](https://github.com/cssnano/cssnano) in production build.
+
+**styles.css**
+```css
+.text {
+  color: #162D3D;
+}
+```
+**index.js**
+```js
+import styles from './styles.css';
+
+console.log(styles); // ".text{color:#162D3D}"
+```
 
 ## Install
 ```bash
 # peer dependencies
-yarn add -D autoprefixer cssnano parcel-bundler
+yarn add -D parcel-bundler autoprefixer cssnano
 # plugin
 yarn add -D parcel-plugin-css-to-string
 
 # or
-npm i --save-dev autoprefixer cssnano parcel-bundler
+npm i --save-dev parcel-bundler autoprefixer cssnano
 npm i --save-dev parcel-plugin-css-to-string
 ```
 
-# How to use
-You can add the list of your custom extensions to escape conflicts with files for global CSS or css-modules.
-The default asset type `css`.
+## How to use
+You can add the list of your custom extensions to escape conflicts with files for global CSS or css-modules. The default asset type `css`.
+
+For example: `styles.cssw`
 
 **.parcelrc**
 ```json
@@ -40,7 +56,7 @@ my-app
 
 **src/styles.cssw**
 ```css
-.text {
+.title {
   text-align: center;
 }
 ```
@@ -53,7 +69,7 @@ const root = document.createElement('div');
 root.innerHTML = `
 <style>${styles}</style>
 <div>
-  <h1 class="text">Hello!</h1>
+  <h1 class="title">Hello!</h1>
 </div>
 `;
 

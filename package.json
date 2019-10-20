@@ -1,7 +1,7 @@
 {
   "name": "parcel-plugin-css-to-string",
-  "version": "1.0.0",
-  "description": "Import CSS file to javascript as a string.",
+  "version": "1.0.1",
+  "description": "Importing CSS files as a string to javascript",
   "main": "./src/index.js",
   "scripts": {},
   "devDependencies": {},
