@@ -22,15 +22,17 @@ yarn add -D parcel-plugin-css-to-string
 ```
 
 ## How to use
-You can add the list of your custom extensions to escape conflicts with files for global CSS or css-modules. The default asset type `css`.
+I'm recommending to use the custom extension to your styles which will be imported as a string. It will help to escape conflicts with `.css` files for global styles or css-modules. The default asset type `css`.
 
-For example: `styles.cssw`
+You can add the list of your custom extensions to `.parcelrc` config. [Syntax highlight custom extension](#developer-tools)
+
+For example: `styles.cssx`.
 
 **.parcelrc**
 ```json
 {
   "parcel-plugin-css-to-string": {
-    "assetType": ["cssw"]
+    "assetType": ["cssx"]
   }
 }
 ```
@@ -40,12 +42,12 @@ Web component styles via the Shadow DOM
 ```bash
 my-app
 ├── src
-│   ├── styles.cssw
+│   ├── styles.cssx
 │   └── index.js
 └── .parcelrc
 ```
 
-**src/styles.cssw**
+**src/styles.cssx**
 ```css
 .title {
   text-align: center;
@@ -53,7 +55,7 @@ my-app
 ```
 **src/index.js**
 ```js
-import styles from './styles.cssw';
+import styles from './styles.cssx';
 
 const root = document.createElement('div');
 
@@ -66,8 +68,7 @@ root.innerHTML = `
 
 class MyWebComponent extends HTMLElement {
   connectedCallback() {
-    this.$root = root.cloneNode(true);
-    this.attachShadow({ mode: 'open' }).appendChild(this.$root);
+    this.attachShadow({ mode: 'open' }).appendChild(root);
   }
 }
 
@@ -110,14 +111,17 @@ module.exports = {
 ### PostCSS
 You can configure CSS transforming with PostCSS creating a configuration file using one of these names: `.postcssrc` (JSON), `.postcssrc.js`, or `postcss.config.js`.
 
-> `.postcssrc` config omit `.parcelrc` option `minify`. If you use PostCSS config then you need added `cssnano` plugin to minify production build.
+> `.postcssrc` config omit `.parcelrc` option `minify`.
+> If you use PostCSS config then you need added `cssnano` plugin to minify production build.
 
 **.postcssrc**
 ```js
 {
   "plugins": {
     "autoprefixer": {},
-    "cssnano": {}
+    "cssnano": {
+      preset: ['default']
+    }
   }
 }
 ```
@@ -132,7 +136,7 @@ my-app
 ├── .vscode
 │   └── settings.json
 ├── src
-│   ├── styles.cssw
+│   ├── styles.cssx
 │   └── index.js
 └── .parcelrc
 ```
@@ -140,7 +144,7 @@ my-app
 ```json
 {
   "files.associations": {
-    "*.cssw": "css",
+    "*.cssx": "css",
     ".parcelrc": "json",
     ".postcssrc": "json"
   }
