@@ -1,4 +1,4 @@
-const Asset = require('parcel-bundler/src/Asset');
+const Asset = require('parcel-bundler/src/Asset.js');
 const postcss = require('postcss');
 const { getPostcssrc } = require('./config.js');
 

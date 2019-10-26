@@ -120,7 +120,7 @@ You can configure CSS transforming with PostCSS creating a configuration file us
   "plugins": {
     "autoprefixer": {},
     "cssnano": {
-      preset: ['default']
+      "preset": ["default"]
     }
   }
 }

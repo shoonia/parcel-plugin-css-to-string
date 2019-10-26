@@ -44,13 +44,13 @@ const cssnanoConfig = (() => {
 })();
 
 function getPostcssrc() {
-  const isCnn = util.isBoolean(parcelConfig.minify) ? parcelConfig.minify : true;
+  const isMinify = util.isBoolean(parcelConfig.minify) ? parcelConfig.minify : true;
 
   return postcssrc()
     .catch(() => {
       return {
         options: {},
-        plugins: isCnn
+        plugins: isMinify
           ? [
             (cssnanoConfig == null)
               ? require('cssnano')
