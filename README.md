@@ -9,7 +9,7 @@ Importing CSS files as a string to javascript.
 ```
 **index.js**
 ```js
-import styles from './styles.css';
+import styles from "./styles.css";
 
 console.log(styles); // ".text{color:#162D3D}"
 ```
@@ -55,9 +55,9 @@ my-app
 ```
 **src/index.js**
 ```js
-import styles from './styles.cssx';
+import styles from "./styles.cssx";
 
-const root = document.createElement('div');
+const root = document.createElement("div");
 
 root.innerHTML = `
 <style>${styles}</style>
@@ -68,7 +68,7 @@ root.innerHTML = `
 
 class MyWebComponent extends HTMLElement {
   connectedCallback() {
-    this.attachShadow({ mode: 'open' }).appendChild(root);
+    this.attachShadow({ mode: "open" }).appendChild(root);
   }
 }
 
@@ -97,7 +97,7 @@ You can configure minify CSS in production build, where custom configuration can
 ```js
 module.exports = {
   preset: [
-    'default',
+    "default",
     {
       calc: false,
       discardComments: {
