@@ -5,13 +5,17 @@
   "main": "./src/index.js",
   "scripts": {
     "lint": "eslint src/** --fix",
-    "lint-ci": "eslint src/**"
+    "lint-ci": "eslint src/** tests/**",
+    "test": "jest tests/**/*.test.js"
   },
   "dependencies": {
     "postcss-load-config": "~2.x"
   },
   "devDependencies": {
-    "eslint": "^6.7.2"
+    "eslint": "^6.7.2",
+    "fs-extra": "^8.1.0",
+    "jest": "^24.9.0",
+    "parcel-bundler": "^1.12.4"
   },
   "peerDependencies": {
     "parcel-bundler": "~1.x"
