@@ -50,19 +50,19 @@ const { options, plugins } = (() => {
   try {
     return postcssrc.sync();
   } catch (error) {
-      return {
-        options: {},
-        plugins: isMinify && isProd
-          ? [
-            require('cssnano')(
-              cssnanoConfig == null
-                ? { preset: 'default' }
-                : cssnanoConfig,
-            ),
-          ]
-          : [],
-      };
-    }
+    return {
+      options: {},
+      plugins: isMinify && isProd
+        ? [
+          require('cssnano')(
+            cssnanoConfig == null
+              ? { preset: 'default' }
+              : cssnanoConfig,
+          ),
+        ]
+        : [],
+    };
+  }
 })();
 
 module.exports = {

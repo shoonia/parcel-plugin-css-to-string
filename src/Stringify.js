@@ -19,7 +19,7 @@ class Stringify extends Asset {
 
       return;
     }
-  
+
     const { css } = await postcss(plugins).process(string, options);
 
     this.code = wrap(css);
