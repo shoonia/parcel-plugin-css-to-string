@@ -9,6 +9,7 @@ function wrap(css) {
 class Stringify extends Asset {
   constructor(name, options) {
     super(name, options);
+    this.name = name;
     this.type = 'js';
     this.code = '';
   }
@@ -20,7 +21,8 @@ class Stringify extends Asset {
       return;
     }
 
-    const { css } = await postcss(plugins).process(string, options);
+    const ops = Object.assign({ from: this.name }, options);
+    const { css } = await postcss(plugins).process(string, ops);
 
     this.code = wrap(css);
   }
