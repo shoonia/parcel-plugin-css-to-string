@@ -57,10 +57,10 @@ const { options, plugins } = (() => {
           require('cssnano')(
             cssnanoConfig == null
               ? { preset: 'default' }
-              : cssnanoConfig,
-          ),
+              : cssnanoConfig
+          )
         ]
-        : [],
+        : []
     };
   }
 })();
@@ -68,5 +68,5 @@ const { options, plugins } = (() => {
 module.exports = {
   assetType: Array.isArray(parcelConfig.assetType) ? parcelConfig.assetType : ['css'],
   options,
-  plugins,
+  plugins
 };
