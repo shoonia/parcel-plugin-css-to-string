@@ -43,25 +43,30 @@ const cssnanoConfig = (() => {
   return null;
 })();
 
-function getPostcssrc() {
+const { options, plugins } = (() => {
   const isMinify = util.isBoolean(parcelConfig.minify) ? parcelConfig.minify : true;
+  const isProd = process.env.NODE_ENV === 'production';
 
-  return postcssrc()
-    .catch(() => {
+  try {
+    return postcssrc.sync();
+  } catch (error) {
       return {
         options: {},
-        plugins: isMinify
+        plugins: isMinify && isProd
           ? [
-            (cssnanoConfig == null)
-              ? require('cssnano')
-              : require('cssnano')(cssnanoConfig),
+            require('cssnano')(
+              cssnanoConfig == null
+                ? { preset: 'default' }
+                : cssnanoConfig,
+            ),
           ]
           : [],
       };
-    });
-}
+    }
+})();
 
 module.exports = {
   assetType: Array.isArray(parcelConfig.assetType) ? parcelConfig.assetType : ['css'],
-  getPostcssrc,
+  options,
+  plugins,
 };
