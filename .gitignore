@@ -1,4 +1,5 @@
 node_modules/
+tests/__dist__/
 .DS_Store
 
 *.env*
