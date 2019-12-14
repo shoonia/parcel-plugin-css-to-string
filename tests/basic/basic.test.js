@@ -13,7 +13,7 @@ describe('basic tests', () => {
   });
 
   it('should be style in string', async () => {
-    await helper.createBundler(entry).bundle();
+    await helper.bundle(entry);
 
     const { received } = helper.require();
 

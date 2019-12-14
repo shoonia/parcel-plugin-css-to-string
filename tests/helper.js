@@ -2,12 +2,9 @@ const path = require('path');
 const Bundler = require('parcel-bundler');
 const fse = require('fs-extra');
 
-const plugin = require('../src');
+const outDir = path.join(__dirname, './__dist__');
 
-const outDir = path.join(__dirname, './dist');
-
-function createBundler(dirname) {
-  const entry = path.join(dirname);
+function bundle(entry) {
   const bundler = new Bundler(entry, {
     outDir,
     outFile: 'index.js',
@@ -20,13 +17,15 @@ function createBundler(dirname) {
     autoInstall: false,
   });
 
-  plugin(bundler);
+  jest.isolateModules(() => {
+    require('../src')(bundler);
+  });
 
-  return bundler;
+  return bundler.bundle();
 }
 
 module.exports = {
-  createBundler,
+  bundle,
   require: () => require(outDir),
   emptyDir: () => fse.emptyDirSync(outDir),
   rmDir: () => fse.removeSync(outDir),
