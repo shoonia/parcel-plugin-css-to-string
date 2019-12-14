@@ -13,9 +13,9 @@ describe('basic tests', () => {
   });
 
   it('should be style in string', async () => {
-    await helper.bundle(entry);
-
-    const { received } = helper.require();
+    const fileName = helper.randomName();
+    await helper.bundle(entry, fileName);
+    const { received } = helper.require(fileName);
 
     expect(received).toBe('.test {\n  color: red;\n}\n');
   });
