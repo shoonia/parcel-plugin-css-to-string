@@ -1,7 +1,7 @@
 const path = require('path');
 const Bundler = require('parcel-bundler');
 const fse = require('fs-extra');
-const naonid = require('nanoid');
+const nanoid = require('nanoid');
 
 const outDir = path.join(__dirname, './__dist__');
 
@@ -29,7 +29,7 @@ function bundle(entry, outFile) {
 
 module.exports = {
   bundle,
-  randomName: () => `$index.${naonid()}.js`,
+  randomName: () => `index.${nanoid()}.js`,
   require: (fileName) => require(path.join(outDir, fileName)),
   emptyDir: () => fse.emptyDirSync(outDir),
   rmDir: () => fse.removeSync(outDir),
