@@ -33,16 +33,6 @@ const parcelConfig = (() => {
   return {};
 })();
 
-const cssnanoConfig = (() => {
-  const config = path.join(root, 'cssnano.config.js');
-
-  if (fs.existsSync(config)) {
-    return require(config);
-  }
-
-  return null;
-})();
-
 const { options, plugins } = (() => {
   const isMinify = util.isBoolean(parcelConfig.minify) ? parcelConfig.minify : true;
   const isProd = process.env.NODE_ENV === 'production';
@@ -53,13 +43,7 @@ const { options, plugins } = (() => {
     return {
       options: {},
       plugins: isMinify && isProd
-        ? [
-          require('cssnano')(
-            cssnanoConfig == null
-              ? { preset: 'default' }
-              : cssnanoConfig
-          )
-        ]
+        ? [require('cssnano')]
         : []
     };
   }
