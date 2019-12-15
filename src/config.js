@@ -34,12 +34,12 @@ const parcelConfig = (() => {
 })();
 
 const { options, plugins } = (() => {
-  const isMinify = util.isBoolean(parcelConfig.minify) ? parcelConfig.minify : true;
-  const isProd = process.env.NODE_ENV === 'production';
-
   try {
     return postcssrc.sync();
   } catch (error) {
+    const isMinify = util.isBoolean(parcelConfig.minify) ? parcelConfig.minify : true;
+    const isProd = process.env.NODE_ENV === 'production';
+
     return {
       options: {},
       plugins: isMinify && isProd
