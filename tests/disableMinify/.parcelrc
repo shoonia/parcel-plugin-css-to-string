@@ -1,0 +1,5 @@
+{
+  "parcel-plugin-css-to-string": {
+    "minify": false
+  }
+}

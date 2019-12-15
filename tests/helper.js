@@ -5,10 +5,6 @@ const nanoid = require('nanoid');
 
 const outDir = path.join(__dirname, './__dist__');
 
-if (!fs.existsSync(outDir)){
-  fs.mkdirSync(outDir);
-}
-
 function bundle(entry, outFile) {
   if (!outFile) throw new Error();
 
@@ -31,10 +27,18 @@ function bundle(entry, outFile) {
   return bundler.bundle();
 }
 
+function requireAndRemove(fileName) {
+  const filePath = path.join(outDir, fileName);
+  const data = require(filePath);
+
+  fs.unlinkSync(filePath);
+
+  return data;
+}
+
 module.exports = {
   bundle,
+  require: requireAndRemove,
   randomName: () => `index.${nanoid()}.js`,
-  require: (fileName) => require(path.join(outDir, fileName)),
-  remove: (fileName) => fs.unlinkSync(path.join(outDir, fileName)),
   mockCWD: (dir) => jest.spyOn(process, 'cwd').mockReturnValue(dir),
 };

@@ -16,7 +16,6 @@ describe('production minify build', () => {
     const fileName = helper.randomName();
     await helper.bundle(entry, fileName);
     const { received } = helper.require(fileName);
-    helper.remove(fileName);
 
     expect(received).toBe('.test{color:red}');
   });

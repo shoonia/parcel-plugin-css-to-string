@@ -15,10 +15,11 @@ describe('cssnaon', () => {
   it('should be used `cssnano.config.js` file', async () => {
     const fileName = helper.randomName();
     const spy = helper.mockCWD(__dirname);
+
+    expect(process.cwd()).toBe(__dirname);
     await helper.bundle(entry, fileName);
     spy.mockRestore();
     const { received } = helper.require(fileName);
-    helper.remove(fileName);
 
     expect(received).toBe('.x{color:#000}');
   });

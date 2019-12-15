@@ -3,8 +3,16 @@ const helper = require('../helper');
 
 const entry = path.join(__dirname, 'script.js');
 
-describe('postcss config', () => {
-  it('should be used `.postcssrc.json` config file', async () => {
+describe('disable minify', () => {
+  afterAll(() => {
+    process.env.NODE_ENV = 'test';
+  });
+
+  beforeEach(() => {
+    process.env.NODE_ENV = 'production';
+  });
+
+  it('should be disable minify styles', async () => {
     const fileName = helper.randomName();
     const spy = helper.mockCWD(__dirname);
 
@@ -14,6 +22,6 @@ describe('postcss config', () => {
 
     const { received } = helper.require(fileName);
 
-    expect(received).toBe('.test{color:#000}');
+    expect(received).toBe('.test {\n  color: red;\n}\n');
   });
 });
