@@ -2,33 +2,26 @@ const Asset = require('parcel-bundler/src/Asset.js');
 const postcss = require('postcss');
 const { options, plugins } = require('./config.js');
 
-function wrap(css) {
-  return `module.exports = ${JSON.stringify(css)}`;
-}
-
 class Stringify extends Asset {
   constructor(name, options) {
     super(name, options);
-    this.name = name;
     this.type = 'js';
-    this.code = '';
   }
 
-  async parse(string) {
+  parse(string) {
     if (plugins.length < 1) {
-      this.code = wrap(string);
-
-      return;
+      return string;
     }
 
-    const ops = Object.assign({ from: this.name }, options);
-    const { css } = await postcss(plugins).process(string, ops);
+    const _options = Object.assign({ from: this.name }, options);
 
-    this.code = wrap(css);
+    return postcss(plugins)
+      .process(string, _options)
+      .then((res) => res.css);
   }
 
-  async generate() {
-    return { js: this.code };
+  generate() {
+    return `module.exports = ${JSON.stringify(this.ast)}`;
   }
 }
 

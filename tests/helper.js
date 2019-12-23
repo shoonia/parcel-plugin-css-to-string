@@ -5,6 +5,8 @@ const nanoid = require('nanoid');
 
 const outDir = path.join(__dirname, './__dist__');
 
+jest.setTimeout(15000);
+
 function bundle(entry, outFile) {
   if (!outFile) throw new Error();
 

@@ -1,4 +1,6 @@
 # parcel-plugin-css-to-string
+[![test status](https://github.com/shoonia/parcel-plugin-css-to-string/workflows/test/badge.svg)](https://github.com/shoonia/parcel-plugin-css-to-string/actions)
+
 Importing CSS files as a string to javascript.
 
 **styles.css**
