@@ -89,10 +89,10 @@ window.customElements.define("my-web-component", MyWebComponent);
   }
 }
 ```
-|    Name          |   Type      | Default    | Description |
-|:----------------:|:-----------:|:----------:|:-----------:|
-| **assetType**    | `{Array}`   |  `["css"]` | List of asset types imported to javascript as a string.
-|  **minify**      | `{Boolean}` |  `true`    | on/off minification
+|    Name          |   Type            | Default    | Description |
+|:----------------:|:-----------------:|:----------:|:-----------:|
+| **assetType**    | `{Array<string>}` |  `["css"]` | List of asset types imported to javascript as a string.
+|  **minify**      | `{Boolean}`       |  `true`    | on/off minification
 
 ### Minify config
 You can configure minify CSS in production build, where custom configuration can be set by creating `cssnano.config.js` file
