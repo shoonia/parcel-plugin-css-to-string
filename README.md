@@ -91,7 +91,7 @@ your `.parcelrc`
 }
 ```
 or `package.json`
-```json
+```diff
 {
   "name": "my_package",
   "description": "",

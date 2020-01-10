@@ -1,8 +1,8 @@
 {
-  "devDependencies": {
-    "parcel-bundler": "^1.x",
-    "parcel-plugin-css-to-string": "^2.x"
-  },
+  "name": "my_package",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
   "parcel-plugin-css-to-string": {
     "assetType": [
       "cssx",
