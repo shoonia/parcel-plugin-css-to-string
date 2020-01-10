@@ -1,0 +1,3 @@
+.test_mystyle {
+  color: red;
+}

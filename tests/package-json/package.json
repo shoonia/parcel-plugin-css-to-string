@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "parcel-bundler": "^1.x",
+    "parcel-plugin-css-to-string": "^2.x"
+  },
+  "parcel-plugin-css-to-string": {
+    "assetType": [
+      "cssx",
+      "mystyle"
+    ]
+  }
+}
