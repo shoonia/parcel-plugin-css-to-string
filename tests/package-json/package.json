@@ -1,0 +1,12 @@
+{
+  "name": "my_package",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "parcel-plugin-css-to-string": {
+    "assetType": [
+      "cssx",
+      "mystyle"
+    ]
+  }
+}

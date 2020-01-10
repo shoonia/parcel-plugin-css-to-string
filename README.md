@@ -80,7 +80,8 @@ window.customElements.define("my-web-component", MyWebComponent);
 ```
 
 ## Plugin options
-### .parcelrc
+
+your `.parcelrc`
 ```json
 {
   "parcel-plugin-css-to-string": {
@@ -89,6 +90,24 @@ window.customElements.define("my-web-component", MyWebComponent);
   }
 }
 ```
+or `package.json`
+```diff
+{
+  "name": "my_package",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "parcel-bundler": "^1.x",
+    "parcel-plugin-css-to-string": "^2.x"
+  },
++  "parcel-plugin-css-to-string": {
++    "assetType": ["css"],
++    "minify": true
++  }
+}
+```
+
 |    Name          |   Type            | Default    | Description |
 |:----------------:|:-----------------:|:----------:|:-----------:|
 | **assetType**    | `{Array<string>}` |  `["css"]` | List of asset types imported to javascript as a string.
