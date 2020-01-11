@@ -141,10 +141,9 @@ You can configure CSS transforming with PostCSS creating a configuration file us
 ```js
 {
   "plugins": {
+    "postcss-import": {},
     "autoprefixer": {},
-    "cssnano": {
-      "preset": ["default"]
-    }
+    "cssnano": {}
   }
 }
 ```
