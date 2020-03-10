@@ -3,8 +3,8 @@ const postcss = require('postcss');
 const { options, plugins } = require('./config.js');
 
 class Stringify extends Asset {
-  constructor(name, options) {
-    super(name, options);
+  constructor(...args) {
+    super(...args);
     this.type = 'js';
   }
 
@@ -13,15 +13,18 @@ class Stringify extends Asset {
       return string;
     }
 
-    const _options = Object.assign({ from: this.name }, options);
-
     return postcss(plugins)
-      .process(string, _options)
+      .process(string, { from: this.name, ...options })
       .then((res) => res.css);
   }
 
   generate() {
-    return `module.exports = ${JSON.stringify(this.ast)}`;
+    return [
+      {
+        type: 'js',
+        value: `module.exports = ${JSON.stringify(this.ast)}`,
+      },
+    ];
   }
 }
 

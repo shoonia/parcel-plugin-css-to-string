@@ -4,8 +4,7 @@
   "description": "Importing CSS files as a string to javascript",
   "main": "./src/index.js",
   "scripts": {
-    "lint": "eslint src/** --fix",
-    "lint-ci": "eslint src/** tests/**",
+    "lint": "eslint src/** tests/**",
     "test": "jest tests/**/*.test.js && rm -rf tests/__dist__"
   },
   "dependencies": {
@@ -13,7 +12,7 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "husky": "^4.2.1",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
     "nanoid": "^2.1.11",
     "parcel-bundler": "^1.12.4",
@@ -24,7 +23,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-ci && npm test"
+      "pre-commit": "npm run lint && npm test"
     }
   },
   "keywords": [
