@@ -1,7 +1,6 @@
 const path = require('path');
-const fs = require('fs');
 const Bundler = require('parcel-bundler');
-const nanoid = require('nanoid');
+const { nanoid } = require('nanoid/non-secure');
 
 const outDir = path.join(__dirname, './__dist__');
 
@@ -29,18 +28,10 @@ function bundle(entry, outFile) {
   return bundler.bundle();
 }
 
-function requireAndRemove(fileName) {
-  const filePath = path.join(outDir, fileName);
-  const data = require(filePath);
-
-  fs.unlinkSync(filePath);
-
-  return data;
-}
-
 module.exports = {
   bundle,
-  require: requireAndRemove,
-  randomName: () => `index.${nanoid()}.js`,
+  outDir,
+  require: (name) => require(path.join(outDir, name)),
+  randomName: () => `${nanoid()}.js`,
   mockCWD: (dir) => jest.spyOn(process, 'cwd').mockReturnValue(dir),
 };

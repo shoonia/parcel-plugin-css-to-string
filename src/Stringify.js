@@ -1,6 +1,6 @@
 const Asset = require('parcel-bundler/src/Asset.js');
 const postcss = require('postcss');
-const { options, plugins } = require('./config.js');
+const { options, plugins, enableCSS } = require('./config.js');
 
 class Stringify extends Asset {
   constructor(...args) {
@@ -19,12 +19,10 @@ class Stringify extends Asset {
   }
 
   generate() {
-    return [
-      {
-        type: 'js',
-        value: `module.exports = ${JSON.stringify(this.ast)}`,
-      },
-    ];
+    return  {
+      css: enableCSS ? this.ast : undefined,
+      js: `module.exports = ${JSON.stringify(this.ast)}`,
+    };
   }
 }
 
