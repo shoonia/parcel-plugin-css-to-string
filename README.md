@@ -86,7 +86,8 @@ your `.parcelrc`
 {
   "parcel-plugin-css-to-string": {
     "assetType": ["css"],
-    "minify": true
+    "minify": true,
+    "enableCSS": false
   }
 }
 ```
@@ -103,7 +104,8 @@ or `package.json`
   },
 +  "parcel-plugin-css-to-string": {
 +    "assetType": ["css"],
-+    "minify": true
++    "minify": true,
++    "enableCSS": false
 +  }
 }
 ```
