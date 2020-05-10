@@ -20,7 +20,7 @@ class Stringify extends Asset {
 
   generate() {
     return  {
-      css: enableCSS ? this.ast : undefined,
+      css: enableCSS && this.ast,
       js: `module.exports = ${JSON.stringify(this.ast)}`,
     };
   }
