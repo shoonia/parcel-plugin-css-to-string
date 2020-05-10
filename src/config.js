@@ -7,7 +7,7 @@ const root = process.cwd();
 const isObject = (value) => value !== null && typeof value === 'object';
 const isBoolean = (value) => typeof value === 'boolean';
 
-const { minify, assetType } = (() => {
+const { minify, assetType, enableCSS } = (() => {
   const parcelrc = join(root, '.parcelrc');
   const PLUGIN_NAME = 'parcel-plugin-css-to-string';
 
@@ -63,6 +63,7 @@ const { options, plugins } = (() => {
 
 module.exports = {
   assetType: Array.isArray(assetType) ? assetType : ['css'],
+  enableCSS: isBoolean(enableCSS) ? enableCSS : false,
   options,
   plugins
 };
