@@ -1,8 +1,8 @@
-const { existsSync, readFileSync } = require('fs');
+const { existsSync, readFileSync, realpathSync } = require('fs');
 const { join } = require('path');
 const postcssrc = require('postcss-load-config');
 
-const root = process.cwd();
+const root = realpathSync(process.cwd());
 
 const isObject = (value) => value !== null && typeof value === 'object';
 const isBoolean = (value) => typeof value === 'boolean';
