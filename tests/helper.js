@@ -6,7 +6,7 @@ const outDir = path.join(__dirname, './__dist__');
 
 jest.setTimeout(15000);
 
-function bundle(entry, outFile) {
+const bundle = (entry, outFile) => {
   if (!outFile) throw new Error();
 
   const bundler = new Bundler(entry, {
@@ -26,7 +26,7 @@ function bundle(entry, outFile) {
   });
 
   return bundler.bundle();
-}
+};
 
 module.exports = {
   bundle,
