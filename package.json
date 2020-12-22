@@ -8,7 +8,7 @@
     "test": "jest tests/**/*.test.js && rm -rf tests/__dist__"
   },
   "dependencies": {
-    "postcss-load-config": "^2.0.0"
+    "postcss-load-config": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^7.16.0",
