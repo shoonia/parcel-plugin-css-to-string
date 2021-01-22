@@ -1,21 +1,19 @@
 const path = require('path');
-const helper = require('../helper');
+const driver = require('../driver');
 
 const entry = path.join(__dirname, 'script.js');
 
 describe('production minify build', () => {
-  afterAll(() => {
-    process.env.NODE_ENV = 'test';
-  });
+  it('should minify css', async () => {
+    const fileName = driver.randomName();
 
-  beforeEach(() => {
     process.env.NODE_ENV = 'production';
-  });
 
-  it('should be minify style in string', async () => {
-    const fileName = helper.randomName();
-    await helper.bundle(entry, fileName);
-    const { received } = helper.require(fileName);
+    await driver.bundle(entry, fileName);
+
+    process.env.NODE_ENV = 'test';
+
+    const { received } = driver.require(fileName);
 
     expect(received).toBe('.test{color:red}');
   });

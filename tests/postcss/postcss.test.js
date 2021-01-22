@@ -1,18 +1,18 @@
 const path = require('path');
-const helper = require('../helper');
+const driver = require('../driver');
 
 const entry = path.join(__dirname, 'script.js');
 
 describe('postcss config', () => {
-  it('should be used `.postcssrc.json` config file', async () => {
-    const fileName = helper.randomName();
-    const spy = helper.mockCWD(__dirname);
+  it('should use `.postcssrc.json` config file', async () => {
+    const fileName = driver.randomName();
+    const spy = driver.mockCwd(__dirname);
 
-    expect(process.cwd()).toBe(__dirname);
-    await helper.bundle(entry, fileName);
+    await driver.bundle(entry, fileName);
+
     spy.mockRestore();
 
-    const { received } = helper.require(fileName);
+    const { received } = driver.require(fileName);
 
     expect(received).toBe('.test{color:#000}');
   });

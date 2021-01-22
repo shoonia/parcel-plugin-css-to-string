@@ -1,25 +1,25 @@
 const fs = require('fs');
 const path = require('path');
-const helper = require('../helper');
+const driver = require('../driver');
 
 const entry = path.join(__dirname, 'main.js');
 
 describe('enable the generation of CSS files', () => {
   it('should have a CSS and JS files', async () => {
-    const fileName = helper.randomName();
-    const spy = helper.mockCWD(__dirname);
+    const fileName = driver.randomName();
+    const spy = driver.mockCwd(__dirname);
 
-    expect(process.cwd()).toBe(__dirname);
+    await driver.bundle(entry, fileName);
 
-    await helper.bundle(entry, fileName);
     spy.mockRestore();
 
     const cssFile = fileName.slice(0, -2).concat('css');
-    const cssPath = path.join(helper.outDir, cssFile);
+    const cssPath = path.join(driver.outDir, cssFile);
 
-    expect(fs.existsSync(cssPath)).toBeTruthy();
+    expect(fs.existsSync(cssPath)).toBe(true);
 
-    const { received } = helper.require(fileName);
+    const { received } = driver.require(fileName);
+
     const css = await fs.promises.readFile(cssPath, 'utf8');
 
     expect(received).toBe('body {\n  color: red;\n}\n');

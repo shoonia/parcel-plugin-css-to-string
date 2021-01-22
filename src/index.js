@@ -1,6 +1,6 @@
 const { assetType } = require('./config.js');
 
-module.exports = function (bundler) {
+module.exports = (bundler) => {
   const Stringify = require.resolve('./Stringify.js');
 
   assetType.forEach((type) => {

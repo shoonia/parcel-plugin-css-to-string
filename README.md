@@ -3,7 +3,7 @@
 [![test status](https://github.com/shoonia/parcel-plugin-css-to-string/workflows/test/badge.svg)](https://github.com/shoonia/parcel-plugin-css-to-string/actions)
 [![npm version](https://img.shields.io/npm/v/parcel-plugin-css-to-string.svg)](https://www.npmjs.com/package/parcel-plugin-css-to-string)
 
-Importing CSS files as a string to javascript.
+Importing CSS files as a string to JavaScript.
 
 **styles.css**
 ```css

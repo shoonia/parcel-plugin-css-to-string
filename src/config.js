@@ -1,5 +1,5 @@
 const { existsSync, readFileSync, realpathSync } = require('fs');
-const { join } = require('path');
+const { resolve } = require('path');
 const postcssrc = require('postcss-load-config');
 
 const root = realpathSync(process.cwd());
@@ -8,7 +8,7 @@ const isObject = (value) => value !== null && typeof value === 'object';
 const isBoolean = (value) => typeof value === 'boolean';
 
 const { minify, assetType, enableCSS } = (() => {
-  const parcelrc = join(root, '.parcelrc');
+  const parcelrc = resolve(root, '.parcelrc');
   const PLUGIN_NAME = 'parcel-plugin-css-to-string';
 
   if (existsSync(parcelrc)) {
@@ -32,7 +32,7 @@ const { minify, assetType, enableCSS } = (() => {
       );
     }
   } else {
-    const pkg = join(root, 'package.json');
+    const pkg = resolve(root, 'package.json');
 
     if (existsSync(pkg)) {
       const config = require(pkg);
@@ -42,6 +42,7 @@ const { minify, assetType, enableCSS } = (() => {
       }
     }
   }
+
   return {};
 })();
 

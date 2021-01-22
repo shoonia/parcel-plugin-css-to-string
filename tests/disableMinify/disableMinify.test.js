@@ -1,26 +1,21 @@
 const path = require('path');
-const helper = require('../helper');
+const driver = require('../driver');
 
 const entry = path.join(__dirname, 'script.js');
 
 describe('disable minify', () => {
-  afterAll(() => {
-    process.env.NODE_ENV = 'test';
-  });
+  it('should disable the minification of css', async () => {
+    const fileName = driver.randomName();
+    const spy = driver.mockCwd(__dirname);
 
-  beforeEach(() => {
     process.env.NODE_ENV = 'production';
-  });
 
-  it('should be disable minify styles', async () => {
-    const fileName = helper.randomName();
-    const spy = helper.mockCWD(__dirname);
+    await driver.bundle(entry, fileName);
 
-    expect(process.cwd()).toBe(__dirname);
-    await helper.bundle(entry, fileName);
+    process.env.NODE_ENV = 'test';
     spy.mockRestore();
 
-    const { received } = helper.require(fileName);
+    const { received } = driver.require(fileName);
 
     expect(received).toBe('.test {\n  color: red;\n}\n');
   });

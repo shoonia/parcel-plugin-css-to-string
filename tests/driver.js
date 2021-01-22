@@ -1,14 +1,17 @@
-const path = require('path');
+const { resolve } = require('path');
 const Bundler = require('parcel-bundler');
 const { nanoid } = require('nanoid/non-secure');
 
-const outDir = path.join(__dirname, './__dist__');
+const outDir = resolve(__dirname, '__dist__');
 
 jest.setTimeout(15000);
 
-const bundle = (entry, outFile) => {
-  if (!outFile) throw new Error();
+beforeEach(() => {
+  jest.resetModules();
+  jest.resetAllMocks();
+});
 
+const bundle = (entry, outFile) => {
   const bundler = new Bundler(entry, {
     outDir,
     outFile,
@@ -31,7 +34,7 @@ const bundle = (entry, outFile) => {
 module.exports = {
   bundle,
   outDir,
-  require: (name) => require(path.join(outDir, name)),
+  require: (name) => require(resolve(outDir, name)),
   randomName: () => `${nanoid()}.js`,
-  mockCWD: (dir) => jest.spyOn(process, 'cwd').mockReturnValue(dir),
+  mockCwd: (root) => jest.spyOn(process, 'cwd').mockReturnValue(root),
 };
