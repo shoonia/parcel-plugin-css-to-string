@@ -1,6 +1,6 @@
 {
   "name": "parcel-plugin-css-to-string",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "description": "Importing CSS files as a string to JavaScript",
   "main": "./src/index.js",
   "scripts": {
@@ -8,15 +8,16 @@
     "test": "jest tests/**/*.test.js && rm -rf tests/__dist__"
   },
   "dependencies": {
-    "postcss-load-config": "^3.0.1"
+    "postcss-load-config": "^3.1.0"
   },
   "devDependencies": {
-    "eslint": "^7.28.0",
-    "jest": "^27.0.4",
-    "nanoid": "^3.1.23",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6",
+    "nanoid": "^3.1.25",
     "parcel-bundler": "^1.12.5",
-    "postcss-import": "^12.0.1",
-    "simple-git-hooks": "^2.4.1"
+    "postcss": "^8.3.6",
+    "postcss-import": "^14.0.2",
+    "simple-git-hooks": "^2.6.1"
   },
   "peerDependencies": {
     "parcel-bundler": "^1.0.0"
