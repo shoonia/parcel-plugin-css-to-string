@@ -1,9 +1,14 @@
 # parcel-plugin-css-to-string
 
+![support parcel v1](https://img.shields.io/badge/Parcel-v1-3638f4)
 [![test status](https://github.com/shoonia/parcel-plugin-css-to-string/workflows/test/badge.svg)](https://github.com/shoonia/parcel-plugin-css-to-string/actions)
 [![npm version](https://img.shields.io/npm/v/parcel-plugin-css-to-string.svg)](https://www.npmjs.com/package/parcel-plugin-css-to-string)
 
 Importing CSS files as a string to JavaScript.
+
+Transform plugin for **Parcel v1**
+
+> Support **Parcel v2**: [parcel-transformer-css-to-string](https://github.com/shoonia/parcel-transformer-css-to-string)
 
 **styles.css**
 ```css
